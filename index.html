@@ -36,6 +36,31 @@
         #nav li a:hover {
             background-color: #111;
         }
+        @media screen and (max-width: 768px) {
+            ul {
+                width: 100px;
+            }
+            .content {
+                margin-left: 110px;
+            }
+        }
+        @media screen and (max-width: 480px) {
+            ul {
+                width: 100%;
+                height: auto;
+                position: relative;
+                display: flex;
+                flex-direction: row;
+            }
+            li {
+                flex: 1;
+                text-align: center;
+            }
+            .content {
+                margin-left: 0;
+                margin-top: 50px;
+            }
+        }
         .content {
             margin-left: 210px;
             padding: 20px;
