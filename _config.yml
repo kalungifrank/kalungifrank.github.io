@@ -1,0 +1,6 @@
+title: "Kalungi Frank"
+description: "This is a personal website describing Kalungi's works"
+theme: jekyll-theme-minimal  # Change based on your theme
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
