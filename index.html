@@ -1,132 +1,1192 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalungi Frank</title>
+    <title>Frank Kalungi | Research Scientist & Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --primary-light: #dbeafe;
+            --secondary: #059669;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --light: #f9fafb;
+            --white: #ffffff;
+            --border: #e5e7eb;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --shadow-lg: rgba(0, 0, 0, 0.15);
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
+            box-sizing: border-box;
         }
-        nav {
-            background-color: #333;
-            position: fixed;
-            width: 200px;
-            height: 100%;
-            overflow: auto;
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--light);
+        }
+
+        /* Header & Navigation */
+        header {
+            background: var(--white);
+            box-shadow: 0 1px 3px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
             transition: all 0.3s ease;
         }
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
+
+        header.scrolled {
+            box-shadow: 0 4px 6px var(--shadow-lg);
         }
-        nav li {
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s, transform 0.3s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
             width: 100%;
         }
-        nav li a {
-            display: block;
-            color: white;
-            padding: 14px 16px;
+
+        nav a:hover,
+        nav a.active {
+            color: var(--primary);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            padding: 6rem 2rem 8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            line-height: 1.8;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.6s backwards;
+        }
+
+        .btn {
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
             text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
         }
-        nav li a:hover {
-            background-color: #111;
+
+        .btn-primary {
+            background: var(--white);
+            color: var(--primary);
         }
-        .content {
-            margin-left: 210px;
-            padding: 20px;
-            flex-grow: 1;
-            overflow-y: auto;
-            text-align: justify;
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        /* Profile Image Container */
+        .profile-image-container {
+            display: flex;
+            justify-content: center;
+            animation: fadeInRight 0.8s ease 0.4s backwards;
+        }
+
+        .profile-image-wrapper {
+            position: relative;
+            width: 400px;
+            height: 400px;
+        }
+
+        .profile-image-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 100%;
+            height: 100%;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            z-index: 0;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.02);
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
         section {
-            padding: 20px 0;
-            border-bottom: 1px solid #ddd;
-            min-height: 0;
+            padding: 5rem 0;
         }
-        @media screen and (max-width: 768px) {
-            nav {
-                width: 100%;
-                height: auto;
-                position: relative;
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--text);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 1.5rem auto 0;
+        }
+
+        /* About Section */
+        #about {
+            background: var(--white);
+            margin: 0 -2rem;
+            padding: 5rem 2rem;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            font-size: 1.05rem;
+        }
+
+        .about-text h3 {
+            color: var(--primary-dark);
+            margin: 2rem 0 1rem;
+            font-size: 1.4rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .stat-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .stat-card h4 {
+            font-size: 2rem;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Skills */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-category {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--shadow-lg);
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-category h3 i {
+            font-size: 1.5rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Projects Section */
+        #projects {
+            background: var(--light);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px var(--shadow-lg);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 1.5rem;
+            color: var(--white);
+        }
+
+        .project-header h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-type {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .project-body {
+            padding: 1.5rem;
+        }
+
+        .project-body p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .project-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: gap 0.3s ease;
+        }
+
+        .project-link:hover {
+            gap: 0.7rem;
+        }
+
+        .ongoing-projects {
+            margin-top: 3rem;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .ongoing-projects h3 {
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .ongoing-projects ul {
+            list-style: none;
+        }
+
+        .ongoing-projects li {
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            background: var(--light);
+            border-radius: 8px;
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+        }
+
+        .ongoing-projects li i {
+            color: var(--secondary);
+            margin-top: 0.2rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: var(--white);
+            margin: 0 -2rem;
+            padding: 5rem 2rem;
+        }
+
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: var(--light);
+            padding: 2.5rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--shadow-lg);
+        }
+
+        .contact-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .contact-card:hover i {
+            color: var(--white);
+        }
+
+        .contact-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--text);
+            transition: color 0.3s ease;
+        }
+
+        .contact-card:hover h3 {
+            color: var(--white);
+        }
+
+        .contact-card a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .contact-card:hover a {
+            color: var(--white);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text);
+            color: var(--white);
+            text-align: center;
+            padding: 2.5rem 2rem;
+        }
+
+        footer p {
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            color: var(--primary-light);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Tablet Styles (768px - 1024px) */
+        @media (max-width: 1024px) {
+            .hero-content {
+                gap: 3rem;
+            }
+
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+
+            .profile-image-wrapper {
+                width: 350px;
+                height: 350px;
+            }
+
+            .about-content {
+                gap: 3rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Mobile Styles (max-width: 768px) */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
             nav ul {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-around;
+                position: fixed;
+                top: 0;
+                left: 0;
                 width: 100%;
+                height: 100vh;
+                background: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transform: translateX(-100%);
+                transition: transform 0.4s ease-in-out;
+                box-shadow: 2px 0 10px var(--shadow);
             }
-            nav li {
-                flex: 1;
+
+            nav ul.active {
+                transform: translateX(0);
+            }
+
+            nav a {
+                font-size: 1.3rem;
+                padding: 1rem 0;
+            }
+
+            .hero {
+                padding: 4rem 1.5rem 5rem;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
                 text-align: center;
             }
-            .content {
-                margin-left: 0;
-                margin-top: 0;
+
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-text .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .hero-text p {
+                font-size: 1rem;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+            }
+
+            .profile-image-wrapper {
+                width: 280px;
+                height: 280px;
+                margin: 0 auto;
+            }
+
+            main {
+                padding: 0 1.5rem;
+            }
+
+            section {
+                padding: 3rem 0;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            #about,
+            #contact {
+                margin: 0 -1.5rem;
+                padding: 3rem 1.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-methods {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.95rem;
             }
         }
-        .profile-img {
-            display: block;
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 10px auto;
+
+        /* Small Mobile Styles (max-width: 480px) */
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 1rem 1.5rem;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .hero {
+                padding: 3rem 1rem 4rem;
+            }
+
+            .hero-text h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-text .subtitle {
+                font-size: 1rem;
+            }
+
+            .profile-image-wrapper {
+                width: 240px;
+                height: 240px;
+            }
+
+            .profile-image-wrapper::before {
+                top: -15px;
+                right: -15px;
+            }
+
+            .section-header h2 {
+                font-size: 1.6rem;
+            }
+
+            .section-header p {
+                font-size: 1rem;
+            }
+
+            .stat-card {
+                padding: 1.5rem;
+            }
+
+            .stat-card h4 {
+                font-size: 1.6rem;
+            }
+
+            .skill-category {
+                padding: 1.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            main {
+                padding: 0 1rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            header {
+                position: static;
+                box-shadow: none;
+            }
+
+            .menu-toggle,
+            .cta-buttons,
+            footer {
+                display: none;
+            }
+
+            .hero {
+                background: var(--white);
+                color: var(--text);
+            }
+
+            section {
+                page-break-inside: avoid;
+            }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        
-    </nav>
 
-    <div class="content">
-        <section id="home">
-            <h1>Home</h1>
-            <img src="kalungi.jpg" alt="Frank Kalungi" class="profile-img">
-            <p> <strong>Hi, welcome to Frank's personal website!.</strong> <br>Frank Kalungi is a distinguished research scientist with passion in artificial intelligence and biotechnology. He is currently an indepedent developer of web, mobile and desktop apps. He has experience in Html, CSS, Javascript, python and its frameworks such as Django, Kivy and Tkinter. </p> <p>Besides programming, he is a genome engineer at the National Agricultural Research Laboratories (NARL) in Kawanda where he developed the first gene-edited East African Highland bananas. In this role, he applies skills such as CRISPR/Cas9 based genome editing, differential gene expression, molecular cloning, HPLC analysis and microbiology.  </p>
-        </section>
-        <section id="about">
-            <h1>About Me</h1>
-            <p>I am passionate about technology and I believe it has the ability to revolutionalize the future of humanity. I am self taught programmer with over 10 years experience in designing web, mobile and desktop software. I particularly drawn to the application of programming to biological science which accelerates the production of drugs, vaccines, disease-resistant crops and many other biotech products. By using technology, I hope to contribute to Africa's developing biotechnology industry through development of bioinformatics software/pipelines for drug design and genome engineering. 
-            </p>
-            <p>
-                <strong>Education Background and Professional Experience</strong> <br>
-                I have an MSc. Biochemistry and a Bsc. Biotechnology from Makerere University. I am currently a research fellow (genome editing) at NARL, Uganda and I've previously worked in Abacus Parenetral Drugs Limited and Coca-Cola Beverages Africa as a quality control officer and bioprocess engineer respectively.   
-            </p>
-            
-        </section>
-        <section id="projects">
-            <h1>Projects</h1>
-            <p>Here are some of my publications for completed projects:</p>
-            <ul>
-                <li><a href="https://link.springer.com/article/10.1007/s40203-023-00162-4" target="_blank">Network pharmacology and molecular docking studies of quercetin as a potential treatment for prostate cancer</a></li>
-                <li><a href="https://www.researchsquare.com/article/rs-3685735/v1" target="_blank">Unraveling the molecular mechanisms and targets in the treatment of rheumatoid arthritis using curcumin </a></li>
-                <li><a href="https://www.taylorfrancis.com/chapters/edit/10.1201/9781003460336-39/kava-piper-methysticum-forst-piperaceae-frank-kalungi-godwin-anywar" target="_blank">Kava as an hallucinogenic plant</a></li>
-            </ul>
-            <p>
-                Ongoing projects: <br>
+    <header id="header">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-dna"></i>
+                Frank Kalungi
+            </a>
+            <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
                 <ul>
-                    <li>Establishing a CRISPR/Cas9 genome editing system in East African Highland banana</li>
-                    <li>Identification of sodium glucose transporter protein-2 inhibitors via machine learning</li>
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
-            </p>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Frank Kalungi</h1>
+                <p class="subtitle">Research Scientist & Developer</p>
+                <p>Pioneering genome engineering and biotechnology innovation in Africa through CRISPR/Cas9 technology and computational biology.</p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        <i class="fas fa-flask"></i>
+                        View Research
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i>
+                        Get in Touch
+                    </a>
+                </div>
+            </div>
+            <div class="profile-image-container">
+                <div class="profile-image-wrapper">
+                    <!-- Replace 'your-image.jpg' with your actual image filename -->
+                    <img src="kalungi.jpg" alt="Frank Kalungi" class="profile-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <section id="about">
+            <div class="section-header">
+                <h2>About Me</h2>
+                <p>Bridging biotechnology and software development to accelerate scientific discovery</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I am a research scientist passionate about leveraging technology to revolutionize humanity's future. With over 10 years of self-taught programming experience, I specialize in designing web, mobile, and desktop applications that advance biological sciences.</p>
+                    
+                    <p>At the National Agricultural Research Laboratories (NARL) in Kawanda, Uganda, I work as a genome engineer, where I developed the first gene-edited East African Highland bananas using CRISPR/Cas9 technology, differential gene expression analysis, molecular cloning, HPLC analysis, and microbiology techniques.</p>
+
+                    <p>My mission is to contribute to Africa's growing biotechnology industry by developing bioinformatics software and computational pipelines for drug design, vaccine development, and genome engineering.</p>
+
+                    <h3>Education & Experience</h3>
+                    <p><strong>Education:</strong> MSc. Biochemistry and BSc. Biotechnology from Makerere University</p>
+                    
+                    <p><strong>Current:</strong> Research Fellow (Genome Editing) at NARL, Uganda</p>
+                    
+                    <p><strong>Previous Roles:</strong></p>
+                    <ul style="list-style: none; padding-left: 0;">
+                        <li style="margin: 0.5rem 0;"><i class="fas fa-check-circle" style="color: var(--secondary); margin-right: 0.5rem;"></i>Quality Control Officer at Abacus Parenteral Drugs Limited</li>
+                        <li style="margin: 0.5rem 0;"><i class="fas fa-check-circle" style="color: var(--secondary); margin-right: 0.5rem;"></i>Bioprocess Engineer at Coca-Cola Beverages Africa</li>
+                    </ul>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-code"></i>
+                        <h4>10+</h4>
+                        <p>Years Programming</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-microscope"></i>
+                        <h4>CRISPR</h4>
+                        <p>Gene Editing Expert</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-book"></i>
+                        <h4>3+</h4>
+                        <p>Publications</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-project-diagram"></i>
+                        <h4>Multiple</h4>
+                        <p>Active Projects</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3><i class="fas fa-laptop-code"></i> Programming</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">HTML/CSS</span>
+                        <span class="skill-tag">Django</span>
+                        <span class="skill-tag">Kivy</span>
+                        <span class="skill-tag">Tkinter</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-dna"></i> Biotechnology</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">CRISPR/Cas9</span>
+                        <span class="skill-tag">Genome Editing</span>
+                        <span class="skill-tag">Molecular Cloning</span>
+                        <span class="skill-tag">HPLC Analysis</span>
+                        <span class="skill-tag">Microbiology</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-brain"></i> Bioinformatics</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Drug Design</span>
+                        <span class="skill-tag">Gene Expression</span>
+                        <span class="skill-tag">Network Pharmacology</span>
+                        <span class="skill-tag">Molecular Docking</span>
+                        <span class="skill-tag">Machine Learning</span>
+                    </div>
+                </div>
+            </div>
         </section>
+
+        <section id="projects">
+            <div class="section-header">
+                <h2>Research & Publications</h2>
+                <p>Advancing science through innovative research and computational approaches</p>
+            </div>
+
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Quercetin in Prostate Cancer</h3>
+                        <p class="project-type">Network Pharmacology</p>
+                    </div>
+                    <div class="project-body">
+                        <p>Network pharmacology and molecular docking studies investigating quercetin as a potential treatment for prostate cancer.</p>
+                        <a href="https://link.springer.com/article/10.1007/s40203-023-00162-4" target="_blank" class="project-link">
+                            Read Publication <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Curcumin & Rheumatoid Arthritis</h3>
+                        <p class="project-type">Molecular Mechanisms</p>
+                    </div>
+                    <div class="project-body">
+                        <p>Unraveling the molecular mechanisms and targets in the treatment of rheumatoid arthritis using curcumin.</p>
+                        <a href="https://www.researchsquare.com/article/rs-3685735/v1" target="_blank" class="project-link">
+                            Read Publication <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Kava Plant Research</h3>
+                        <p class="project-type">Ethnopharmacology</p>
+                    </div>
+                    <div class="project-body">
+                        <p>Comprehensive study on Kava (Piper methysticum) as a hallucinogenic plant from the Piperaceae family.</p>
+                        <a href="https://www.taylorfrancis.com/chapters/edit/10.1201/9781003460336-39/kava-piper-methysticum-forst-piperaceae-frank-kalungi-godwin-anywar" target="_blank" class="project-link">
+                            Read Publication <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ongoing-projects">
+                <h3><i class="fas fa-spinner fa-pulse"></i> Ongoing Projects</h3>
+                <ul>
+                    <li>
+                        <i class="fas fa-seedling"></i>
+                        <span>Establishing a CRISPR/Cas9 genome editing system in East African Highland banana for enhanced disease resistance and nutritional content</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-robot"></i>
+                        <span>Identification of sodium glucose transporter protein-2 inhibitors via machine learning algorithms for diabetes treatment</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
         <section id="contact">
-            <h1>Contact</h1>
-            <p>Feel free to reach out via <a href="mailto:frankkalungi15@gmail.com">email</a> or connect with me on <a href="https://www.linkedin.com/in/kalungi-frank-173588ba/" target="_blank">LinkedIn</a>.</p>
+            <div class="contact-content">
+                <div class="section-header">
+                    <h2>Let's Connect</h2>
+                    <p>Interested in collaboration, research opportunities, or just want to chat about science and technology?</p>
+                </div>
+
+                <div class="contact-methods">
+                    <div class="contact-card">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email</h3>
+                        <a href="mailto:frankkalungi15@gmail.com">frankkalungi15@gmail.com</a>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fab fa-linkedin"></i>
+                        <h3>LinkedIn</h3>
+                        <a href="https://www.linkedin.com/in/kalungi-frank-173588ba/" target="_blank">Connect with me</a>
+                    </div>
+                </div>
+            </div>
         </section>
-    </div>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Frank Kalungi. All rights reserved.</p>
+        <div class="social-links">
+            <a href="mailto:frankkalungi15@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/kalungi-frank-173588ba/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Set current year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Hamburger menu toggle
+        const toggle = document.querySelector('.menu-toggle');
+        const navUl = document.querySelector('nav ul');
+        
+        toggle.addEventListener('click', () => {
+            navUl.classList.toggle('active');
+            const expanded = toggle.getAttribute('aria-expanded') === 'true';
+            toggle.setAttribute('aria-expanded', !expanded);
+            toggle.innerHTML = navUl.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close menu when clicking a link (mobile)
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navUl.classList.remove('active');
+                    toggle.setAttribute('aria-expanded', 'false');
+                    toggle.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Active navigation highlight
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animations
+        document.querySelectorAll('.project-card, .stat-card, .skill-category, .contact-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+
 </body>
 </html>
